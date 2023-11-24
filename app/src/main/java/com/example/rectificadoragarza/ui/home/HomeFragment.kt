@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.rectificadoragarza.R
 import com.example.rectificadoragarza.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null;
     private val binding get() = _binding!!; //se sobre escribe el get
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConfigurationFragment());
         }
         binding.btnConfi.setOnClickListener{
-            Toast.makeText(context, "Hola Mundo", Toast.LENGTH_SHORT).show();
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToServicesFragment());
 
         }
     }

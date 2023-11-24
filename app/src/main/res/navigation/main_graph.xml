@@ -8,8 +8,12 @@
               android:label="fragment_home" tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_homeFragment_to_configurationFragment"
                 app:destination="@id/configurationFragment"/>
+        <action android:id="@+id/action_homeFragment_to_servicesFragment" app:destination="@id/servicesFragment"/>
     </fragment>
     <fragment android:id="@+id/configurationFragment"
               android:name="com.example.rectificadoragarza.ui.config.ConfigurationFragment"
               android:label="fragment_configuration" tools:layout="@layout/fragment_configuration"/>
+    <fragment android:id="@+id/servicesFragment"
+              android:name="com.example.rectificadoragarza.ui.rgServices.ServicesFragment"
+              android:label="fragment_services" tools:layout="@layout/fragment_services"/>
 </navigation>

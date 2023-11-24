@@ -1,12 +1,12 @@
 package com.example.rectificadoragarza.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.example.rectificadoragarza.R
 import com.example.rectificadoragarza.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : FragmentActivity() {
     private lateinit var binding: ActivityMainBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +17,6 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun initUi() {
-        Toast.makeText(this, "Hola Mundo", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Bienvenido!!", Toast.LENGTH_LONG).show();
     }
 }
