@@ -11,8 +11,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.rectificadoragarza.databinding.FragmentServicesBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ServicesFragment : Fragment() {
     private var _binding:FragmentServicesBinding? = null;
     private val binding get() = _binding!!;
@@ -30,6 +32,7 @@ class ServicesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI();
+        servicesViewModel.getStatusConnection();
     }
 
     private fun initUI() {
@@ -42,8 +45,8 @@ class ServicesFragment : Fragment() {
                 servicesViewModel.state.collect{
                     when(it){
                         ServicesState.Loading -> loadingState();
-                        is ServicesState.Error -> errorState();
-                        is ServicesState.Success -> successState();
+                        is ServicesState.Error -> errorState(it);
+                        is ServicesState.Success -> successState(it);
                     }
                 }
             }
@@ -53,12 +56,18 @@ class ServicesFragment : Fragment() {
     private fun loadingState() {
         binding.layoutLoading.isVisible = true;
     }
-    private fun errorState() {
+    private fun errorState(servicesState: ServicesState.Error) {
+        binding.layoutLoading.isVisible = false;
+        binding.textView.text = servicesState.error;
     }
-    private fun successState() {
+    private fun successState(servicesState: ServicesState.Success) {
+        binding.layoutLoading.isVisible = false;
+        binding.textView.text = servicesState.data;
     }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }
